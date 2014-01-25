@@ -1,0 +1,51 @@
+quakenet_auth is an Irssi script that allows you to authenticate to the IRC
+Quakenet network's "Q" bot using their challenge-response authentication scheme
+("challengeauth"), with the aim of being secure, simple and easy to use.
+
+For information on the Quakenet challenge-response scheme, see
+https://www.quakenet.org/development/challengeauth
+
+Copyright (C) 2013 Andreas Bofjäll <andreas@gazonk.org>
+
+WHERE TO GET IT
+
+  The official repository is at github: https://github.com/andbof/quakenet_auth
+
+BASIC INSTALLATION
+
+  Download it and include it in your irssi scripts folder (usually
+  "~/.irssi/scripts/), then load it ("/script load quakenet_auth.pl").
+
+  If you'd like to always load it, create a symlink from your script into the
+  autorun directory, usually "~/.irssi/scripts/autorun/".
+
+USING IT
+
+  To authenticate, use the /quakenet_auth command:
+
+    /quakenet_auth myuser mypassword
+
+  After a short while, you should get a notice from Q stating "You are now
+  logged in as myuser".
+
+  There is no reason not to use the latest algorithm provided by Q, which as of
+  this writing is HMAC-SHA-256, so that's what quakenet_auth uses. You can
+  change this in the source code if you like, but there should be no reason to.
+
+THERE ARE A GAZILLION OF THESE OUT THERE, WHY WRITE ANOTHER ONE?
+
+  As of this writing, Quakenet's own Irssi implementation just returns an
+  HTTP/404 "not found": https://www.quakenet.org/development/secureqauth.txt
+
+  I didn't fancy any of the third-party implementations Google turned up. They
+  didn't seem secure and simple enough, so I wrote this one from scratch.
+
+WHAT DO I GAIN BY USING THIS INSTEAD OF JUST /MSG:ING Q?
+
+  If you /msg Q, your password is sent in clear text. Sniffing your password is
+  trivial for anyone with network access, for example if you're on a public
+  WLAN. Since Quakenet doesn't support SSL, this scheme is your best bet.
+
+COPYRIGHT AND LICENSING
+
+  Licensed under the GPLv2 or later, see the COPYING file for details.
